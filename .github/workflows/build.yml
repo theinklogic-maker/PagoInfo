@@ -22,8 +22,12 @@ jobs:
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Dar permisos a gradlew
-        run: chmod +x gradlew
+      - name: Instalar Gradle wrapper
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.4-bin.zip -O gradle.zip
+          unzip -q gradle.zip
+          ./gradle-8.4/bin/gradle wrapper --gradle-version 8.4
+          chmod +x gradlew
 
       - name: Compilar APK debug
         run: ./gradlew assembleDebug --stacktrace
