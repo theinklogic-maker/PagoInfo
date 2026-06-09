@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PagoInfo</string>
+    <string name="car_app_name">PagoInfo</string>
+    <string name="lbl_alias">Alias</string>
+    <string name="lbl_titular">Titular</string>
+    <string name="lbl_banco">Banco</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_probar_tts">Probar audio</string>
+    <string name="titulo_auto">Información de transferencia</string>
+    <string name="sin_datos">Configure los datos en su teléfono</string>
+    <string name="leer">Leer</string>
+    <string name="actualizar">Actualizar</string>
+</resources>
