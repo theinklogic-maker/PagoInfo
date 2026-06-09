@@ -1,0 +1,2 @@
+-keep class androidx.car.app.** { *; }
+-keep class com.stuch.pagoinfo.service.** { *; }
