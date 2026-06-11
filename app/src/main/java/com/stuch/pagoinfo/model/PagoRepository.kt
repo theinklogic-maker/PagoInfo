@@ -13,6 +13,7 @@ class PagoRepository(context: Context) {
         private const val KEY_TITULAR = "titular"
         private const val KEY_BANCO   = "banco"
         private const val KEY_TTS     = "mensaje_tts"
+        private const val KEY_VOZ     = "voz_nombre"
 
         @Volatile
         private var INSTANCE: PagoRepository? = null
@@ -29,6 +30,7 @@ class PagoRepository(context: Context) {
             .putString(KEY_TITULAR, datos.titular)
             .putString(KEY_BANCO,   datos.banco)
             .putString(KEY_TTS,     datos.mensajeTTS)
+            .putString(KEY_VOZ,     datos.vozNombre)
             .apply()
     }
 
@@ -36,8 +38,8 @@ class PagoRepository(context: Context) {
         alias      = prefs.getString(KEY_ALIAS,   "") ?: "",
         titular    = prefs.getString(KEY_TITULAR, "") ?: "",
         banco      = prefs.getString(KEY_BANCO,   "") ?: "",
-        mensajeTTS = prefs.getString(KEY_TTS,
-            "Buen día, gracias por su viaje. El alias de pago es: ") ?: ""
+        mensajeTTS = prefs.getString(KEY_TTS,     "") ?: "",
+        vozNombre  = prefs.getString(KEY_VOZ,     "") ?: ""
     )
 
     fun hayDatosConfigurados(): Boolean = cargar().alias.isNotBlank()
