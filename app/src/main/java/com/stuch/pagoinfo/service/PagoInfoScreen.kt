@@ -77,17 +77,16 @@ class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
 
     private fun leerEnVozAlta() {
         val datos = repo.cargar()
-        val mensaje = buildString {
-            append(datos.mensajeTTS.trimEnd())
-            if (datos.alias.isNotBlank())   append(" ${datos.alias}.")
-            if (datos.banco.isNotBlank())   append(" Banco ${datos.banco}.")
-            if (datos.titular.isNotBlank()) append(" A nombre de ${datos.titular}.")
+        val mensaje = datos.mensajeTTS
+        if (mensaje.isBlank()) {
+            CarToast.makeText(carContext, "Configurá el mensaje de voz en el teléfono", CarToast.LENGTH_LONG).show()
+            return
         }
         val intent = android.content.Intent("com.stuch.pagoinfo.TTS_SPEAK").apply {
             putExtra("mensaje", mensaje)
             setPackage(carContext.packageName)
         }
         carContext.sendBroadcast(intent)
-        CarToast.makeText(carContext, datos.alias, CarToast.LENGTH_LONG).show()
+        CarToast.makeText(carContext, "Leyendo...", CarToast.LENGTH_SHORT).show()
     }
 }
