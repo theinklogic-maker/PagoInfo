@@ -21,7 +21,7 @@ class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
         .setTitle("PagoInfo")
         .setHeaderAction(Action.APP_ICON)
         .setSingleList(ItemList.Builder()
-            .addItem(Row.Builder().setTitle("Error al cargar").addText("Abrí PagoInfo en el teléfono y volvé a intentar.").build())
+            .addItem(Row.Builder().setTitle("Error al cargar").addText("AbrÃ­ PagoInfo en el telÃ©fono y volvÃ© a intentar.").build())
             .build())
         .build()
 
@@ -30,7 +30,7 @@ class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
         val rowsBuilder = ItemList.Builder()
 
         if (!repo.hayDatosConfigurados()) {
-            rowsBuilder.addItem(Row.Builder().setTitle("Sin configurar").addText("Abrí PagoInfo en el teléfono para configurar los datos de pago.").build())
+            rowsBuilder.addItem(Row.Builder().setTitle("Sin configurar").addText("AbrÃ­ PagoInfo en el telÃ©fono para configurar los datos de pago.").build())
         } else {
             rowsBuilder.addItem(Row.Builder().setTitle(datos.alias).addText("Alias de transferencia").build())
             if (datos.titular.isNotBlank()) rowsBuilder.addItem(Row.Builder().setTitle(datos.titular).addText("Titular").build())
@@ -38,7 +38,7 @@ class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
         }
 
         return ListTemplate.Builder()
-            .setTitle("Información de transferencia")
+            .setTitle("InformaciÃ³n de transferencia")
             .setHeaderAction(Action.APP_ICON)
             .setSingleList(rowsBuilder.build())
             .setActionStrip(ActionStrip.Builder()
@@ -51,8 +51,8 @@ class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
     private fun leerEnVozAlta() {
         try {
             val mensaje = repo.cargar().mensajeTTS
-            if (mensaje.isBlank()) { CarToast.makeText(carContext, "Configurá el mensaje en el teléfono", CarToast.LENGTH_LONG).show(); return }
-            val intent = android.content.Intent("com.stuch.pagoinfo.TTS_SPEAK").apply { putExtra("mensaje", mensaje); setPackage("com.stuch.pagoinfo.debug") }
+            if (mensaje.isBlank()) { CarToast.makeText(carContext, "ConfigurÃ¡ el mensaje en el telÃ©fono", CarToast.LENGTH_LONG).show(); return }
+            val intent = android.content.Intent("com.stuch.pagoinfo.TTS_SPEAK").apply { putExtra("mensaje", mensaje); setPackage(carContext.packageName) }
             carContext.applicationContext.sendBroadcast(intent)
             CarToast.makeText(carContext, "Leyendo...", CarToast.LENGTH_SHORT).show()
         } catch (e: Exception) {
