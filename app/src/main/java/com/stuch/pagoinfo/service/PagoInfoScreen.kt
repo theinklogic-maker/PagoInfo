@@ -8,8 +8,9 @@ import com.stuch.pagoinfo.model.PagoRepository
 
 class PagoInfoScreen(carContext: CarContext) : Screen(carContext) {
 
-    // lazy: se inicializa solo cuando se necesita, no en el constructor
-    private val repo by lazy { PagoRepository.getInstance(carContext.applicationContext) }
+    // Usar carContext directamente (no .applicationContext) para acceder
+    // a las SharedPreferences del proceso de PagoInfo correctamente
+    private val repo by lazy { PagoRepository.getInstance(carContext) }
 
     override fun onGetTemplate(): Template {
         return try {
